@@ -1,0 +1,31 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+ext['springVersion'] = "4.3.11.RELEASE"
+ext['axonVersion'] = "3.2"
+ext['datastoreVersion'] = "1.31.0"
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+group = 'com.github.muzuro'
+version = '1.0.0'
+sourceCompatibility = JavaVersion.VERSION_1_10
+targetCompatibility = JavaVersion.VERSION_1_10
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.axonframework:axon-core:${axonVersion}"
+    compile "com.google.cloud:google-cloud-datastore:${datastoreVersion}"
+
+    testCompile 'junit:junit:4.12'
+    testCompile(group: "org.axonframework", name:"axon-core", version:"${axonVersion}", classifier: "tests")
+    testCompile "org.springframework:spring-context-support:${axonVersion}"
+    testCompile("org.mockito:mockito-core:2.17.0")
+}
